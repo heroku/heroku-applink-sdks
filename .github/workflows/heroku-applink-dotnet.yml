@@ -1,0 +1,31 @@
+name: .NET SDK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "heroku-applink-dotnet/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-dotnet.yml"
+  pull_request:
+    paths:
+      - "heroku-applink-dotnet/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-dotnet.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: pub-hk-ubuntu-24.04-ip
+    defaults:
+      run:
+        working-directory: heroku-applink-dotnet
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: heroku-applink-dotnet/global.json
+      - run: dotnet format --verify-no-changes
+      - run: dotnet test

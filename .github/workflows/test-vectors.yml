@@ -1,0 +1,30 @@
+name: Test vectors
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "test-vectors/**"
+      - ".github/workflows/test-vectors.yml"
+  pull_request:
+    paths:
+      - "test-vectors/**"
+      - ".github/workflows/test-vectors.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  generated:
+    runs-on: pub-hk-ubuntu-24.04-ip
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 -I test-vectors/generate.py
+      - name: Check that the JSON files match generate.py
+        run: |
+          if [ -n "$(git status --porcelain test-vectors)" ]; then
+            git status --short test-vectors
+            git diff test-vectors
+            echo "::error::The test vectors are out of date. Run python3 test-vectors/generate.py and commit the result."
+            exit 1
+          fi

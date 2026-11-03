@@ -1,0 +1,1439 @@
+{
+  "cases": [
+    {
+      "name": "all fields",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "created_via_app missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": null,
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "created_via_app null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": null, \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": null,
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "last_modified_by missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": null,
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "last_modified_by null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": null, \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": null,
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "redirect_uri missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": null
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "redirect_uri null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": null, \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": null
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "org.user_auth.expiration missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\"}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "org.user_auth.expiration null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": null}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "created_via_app empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": null,
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "last_modified_by empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": null,
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "redirect_uri empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": null
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "expiration 0",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 0}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "DataCloudOrg",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"DataCloudOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "DataCloudOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "timestamps without fraction",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "timestamps with millisecond fraction",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "unknown fields are ignored",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226, \"future_field\": \"x\"}, \"future_field\": null}, \"future_field\": {\"nested\": [1, 2, 3]}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "non-ASCII characters",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"jürgen.müller@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "jürgen.müller@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      }
+    },
+    {
+      "name": "status authorizing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorizing\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unusable_authorization",
+      "status": "authorizing"
+    },
+    {
+      "name": "status authorizing without other fields",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorizing\"}",
+      "error": "unusable_authorization",
+      "status": "authorizing"
+    },
+    {
+      "name": "status disconnecting",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"disconnecting\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unusable_authorization",
+      "status": "disconnecting"
+    },
+    {
+      "name": "status disconnecting without other fields",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"disconnecting\"}",
+      "error": "unusable_authorization",
+      "status": "disconnecting"
+    },
+    {
+      "name": "status disconnected",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"disconnected\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unusable_authorization",
+      "status": "disconnected"
+    },
+    {
+      "name": "status disconnected without other fields",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"disconnected\"}",
+      "error": "unusable_authorization",
+      "status": "disconnected"
+    },
+    {
+      "name": "status failed",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"failed\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unusable_authorization",
+      "status": "failed"
+    },
+    {
+      "name": "status failed without other fields",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"failed\"}",
+      "error": "unusable_authorization",
+      "status": "failed"
+    },
+    {
+      "name": "unusable status is checked before other fields",
+      "body": "{\"status\": \"failed\", \"org\": 1}",
+      "error": "unusable_authorization",
+      "status": "failed"
+    },
+    {
+      "name": "not JSON",
+      "body": "not json",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "empty body",
+      "body": "",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "JSON array",
+      "body": "[{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}]",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "JSON null",
+      "body": "null",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "trailing data after JSON",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}} x",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "duplicate unknown field",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}, \"future_field\": 1, \"future_field\": 2}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "status missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "status null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": null, \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "status unknown",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"pending\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "status in upper case",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"AUTHORIZED\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "status not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": 1, \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "id missing",
+      "body": "{\"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "id null",
+      "body": "{\"id\": null, \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "id not a string",
+      "body": "{\"id\": 1, \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_at missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_at null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": null, \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_at not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": 1, \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_by missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_by null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": null, \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_by not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": 1, \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "last_modified_at missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "last_modified_at null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": null, \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "last_modified_at not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": 1, \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\"}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": null}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.id missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.id null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": null, \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.id not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": 1, \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.developer_name missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.developer_name null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": null, \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.developer_name not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": 1, \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.instance_url missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.instance_url null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": null, \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.instance_url not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": 1, \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": null, \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": 1, \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.api_version missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.api_version null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": null, \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.api_version not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": 1, \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\"}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": null}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.username missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.username null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": null, \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.username not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": 1, \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.user_id missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.user_id null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": null, \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.user_id not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": 1, \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.access_token missing",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.access_token null",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": null, \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.access_token not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": 1, \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_at empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "last_modified_at empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "id empty",
+      "body": "{\"id\": \"\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_by empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.id empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.developer_name empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.instance_url empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.api_version empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.username empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": ""
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.user_id empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth.access_token empty",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_via_app not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": 1, \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "last_modified_by not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": 1, \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "redirect_uri not a string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": 1, \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org not an object",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": \"org\"}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.user_auth not an object",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": []}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type unknown",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"OtherOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "org.type in lower case",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"salesforceorg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "created_at not a timestamp",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"yesterday\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "timestamp with offset",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T11:15:42.226577+02:00\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "timestamp with lower-case t and z",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13t09:15:42.226577z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration as string",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": \"1791890142226\"}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration negative",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": -1}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "1969-12-31T23:59:59.999Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration with fraction",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226.5}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration with zero fraction",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1791890142226.0}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration in exponent notation",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 1.791890142226e12}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "2026-10-13T11:15:42.226Z"
+        }
+      },
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration beyond 64 bits",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 100000000000000000000}}}",
+      "error": "unexpected_response"
+    },
+    {
+      "name": "expiration at the end of year 9999",
+      "body": "{\"id\": \"e27e9be0-6dc4-430f-974d-584f5ff8e9e6\", \"status\": \"authorized\", \"created_at\": \"2026-10-13T09:15:42.226577Z\", \"created_by\": \"user@example.tld\", \"created_via_app\": \"example-app\", \"last_modified_at\": \"2026-10-14T10:16:43.5Z\", \"last_modified_by\": \"admin@example.tld\", \"redirect_uri\": \"https://example.tld/callback\", \"org\": {\"id\": \"00DJS0000000123ABC\", \"developer_name\": \"example\", \"instance_url\": \"https://example.my.salesforce.com\", \"type\": \"SalesforceOrg\", \"api_version\": \"62.0\", \"user_auth\": {\"username\": \"user@example.tld\", \"user_id\": \"005JS000000H123\", \"access_token\": \"00DJS0000000123!AQ0AQ.token\", \"expiration\": 253402300799999}}}",
+      "expected": {
+        "authorizationMetadata": {
+          "id": "e27e9be0-6dc4-430f-974d-584f5ff8e9e6",
+          "developerName": "example",
+          "createdAt": "2026-10-13T09:15:42.226577Z",
+          "createdBy": "user@example.tld",
+          "createdViaApp": "example-app",
+          "lastModifiedAt": "2026-10-14T10:16:43.5Z",
+          "lastModifiedBy": "admin@example.tld",
+          "redirectUri": "https://example.tld/callback"
+        },
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": "SalesforceOrg"
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": "9999-12-31T23:59:59.999Z"
+        }
+      }
+    }
+  ]
+}

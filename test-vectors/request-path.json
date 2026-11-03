@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "developerName": "example",
+      "path": "/authorizations/example"
+    },
+    {
+      "developerName": "my-org_1.x~",
+      "path": "/authorizations/my-org_1.x~"
+    },
+    {
+      "developerName": "my org",
+      "path": "/authorizations/my%20org"
+    },
+    {
+      "developerName": "a/b",
+      "path": "/authorizations/a%2Fb"
+    },
+    {
+      "developerName": "a?b#c",
+      "path": "/authorizations/a%3Fb%23c"
+    },
+    {
+      "developerName": "a+b",
+      "path": "/authorizations/a%2Bb"
+    },
+    {
+      "developerName": "50%",
+      "path": "/authorizations/50%25"
+    },
+    {
+      "developerName": "a:b@c!d$e&f'g(h)i*j,k;l=m",
+      "path": "/authorizations/a%3Ab%40c%21d%24e%26f%27g%28h%29i%2Aj%2Ck%3Bl%3Dm"
+    },
+    {
+      "developerName": "jürgen",
+      "path": "/authorizations/j%C3%BCrgen"
+    },
+    {
+      "developerName": "..",
+      "path": "/authorizations/.."
+    }
+  ]
+}

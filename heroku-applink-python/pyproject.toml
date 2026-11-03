@@ -1,0 +1,31 @@
+[project]
+name = "heroku-applink"
+version = "0.1.0"
+description = "Heroku AppLink SDK for Python"
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+requires-python = ">=3.12"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Repository = "https://github.com/heroku/heroku-applink-python"
+Changelog = "https://github.com/heroku/heroku-applink-python/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10"]
+build-backend = "uv_build"
+
+[tool.mypy]
+strict = true
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
