@@ -18,7 +18,7 @@ jobs:
   generated:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: python3 -I test-vectors/generate.py
       - name: Check that the JSON files match generate.py
         run: |
