@@ -1,0 +1,81 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "nuget"
+    directory: "/heroku-applink-dotnet"
+    schedule:
+      interval: "monthly"
+    groups:
+      dotnet:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "gomod"
+    directory: "/heroku-applink-go"
+    schedule:
+      interval: "monthly"
+    groups:
+      go:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "maven"
+    directory: "/heroku-applink-java"
+    schedule:
+      interval: "monthly"
+    groups:
+      java:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "npm"
+    directory: "/heroku-applink-nodejs"
+    schedule:
+      interval: "monthly"
+    groups:
+      nodejs:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "composer"
+    directory: "/heroku-applink-php"
+    schedule:
+      interval: "monthly"
+    groups:
+      php:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "uv"
+    directory: "/heroku-applink-python"
+    schedule:
+      interval: "monthly"
+    groups:
+      python:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "bundler"
+    directory: "/heroku-applink-ruby"
+    schedule:
+      interval: "monthly"
+    groups:
+      ruby:
+        update-types:
+          - "minor"
+          - "patch"

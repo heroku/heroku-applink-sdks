@@ -1,0 +1,37 @@
+name: Ruby SDK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "heroku-applink-ruby/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-ruby.yml"
+  pull_request:
+    paths:
+      - "heroku-applink-ruby/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-ruby.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ["3.4", "4.0"]
+    defaults:
+      run:
+        working-directory: heroku-applink-ruby
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+          working-directory: heroku-applink-ruby
+      - run: bundle exec rake
+      - run: gem build heroku-applink.gemspec

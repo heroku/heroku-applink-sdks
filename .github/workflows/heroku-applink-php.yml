@@ -1,0 +1,39 @@
+name: PHP SDK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "heroku-applink-php/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-php.yml"
+  pull_request:
+    paths:
+      - "heroku-applink-php/**"
+      - "test-vectors/**"
+      - ".github/workflows/heroku-applink-php.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.4", "8.5"]
+    defaults:
+      run:
+        working-directory: heroku-applink-php
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: curl, mbstring, openssl, pcntl
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - run: composer format:check
+      - run: composer lint
+      - run: composer test

@@ -1,0 +1,39 @@
+{
+    "name": "heroku/applink",
+    "description": "Heroku AppLink SDK: parse invocations from Salesforce and look up Heroku AppLink authorizations.",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "keywords": ["heroku", "salesforce", "applink"],
+    "homepage": "https://github.com/heroku/heroku-applink-php",
+    "require": {
+        "php": ">=8.4",
+        "ext-curl": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "ext-openssl": "*",
+        "ext-pcntl": "*",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.3",
+        "phpunit/phpunit": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Heroku\\AppLink\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Heroku\\AppLink\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "phpstan analyse",
+        "format": "php-cs-fixer fix",
+        "format:check": "php-cs-fixer check --diff"
+    }
+}

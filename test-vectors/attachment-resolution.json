@@ -1,0 +1,527 @@
+{
+  "cases": [
+    {
+      "name": "default attachment",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": null,
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/default",
+        "token": "default-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "default API URL missing",
+      "env": {
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "default API URL empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "default token missing",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "default token empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "app ID missing",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "app ID empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": ""
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "attachment empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "",
+      "error": "configuration"
+    },
+    {
+      "name": "attachment name",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "HEROKU_APPLINK_PURPLE",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "attachment name in lower case",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "heroku_applink_purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "default attachment by name",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "HEROKU_APPLINK",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/default",
+        "token": "default-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "color",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "color in upper case",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "PURPLE",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "custom attachment name",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "MY_APPLINK_API_URL": "https://applink.example.tld/addons/custom",
+        "MY_APPLINK_TOKEN": "custom-token"
+      },
+      "attachment": "my_applink",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/custom",
+        "token": "custom-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "name takes precedence over color",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "PURPLE_API_URL": "https://applink.example.tld/addons/plain-purple",
+        "PURPLE_TOKEN": "plain-purple-token"
+      },
+      "attachment": "purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/plain-purple",
+        "token": "plain-purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "falls back to color when name token is empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "PURPLE_API_URL": "https://applink.example.tld/addons/plain-purple",
+        "PURPLE_TOKEN": ""
+      },
+      "attachment": "purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "falls back to color when name token is missing",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "PURPLE_API_URL": "https://applink.example.tld/addons/plain-purple"
+      },
+      "attachment": "purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "falls back to color when name API URL is empty",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "PURPLE_API_URL": "",
+        "PURPLE_TOKEN": "plain-purple-token"
+      },
+      "attachment": "purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "name without token and no color",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "PURPLE_API_URL": "https://applink.example.tld/addons/plain-purple"
+      },
+      "attachment": "purple",
+      "error": "configuration"
+    },
+    {
+      "name": "unknown color",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "orange",
+      "error": "configuration"
+    },
+    {
+      "name": "color token missing",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple"
+      },
+      "attachment": "purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "API URL ignoring case and trailing slash",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "HTTPS://APPLINK.EXAMPLE.TLD/ADDONS/PURPLE/",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "API URL with trailing slash in config var",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple/",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/purple",
+        "token": "purple-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "API URL of custom attachment",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "MY_APPLINK_API_URL": "https://applink.example.tld/addons/custom",
+        "MY_APPLINK_TOKEN": "custom-token"
+      },
+      "attachment": "https://applink.example.tld/addons/custom",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/custom",
+        "token": "custom-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "API URL of default attachment",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "https://applink.example.tld/addons/default",
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/default",
+        "token": "default-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "API URL with a non-ASCII letter matches no config var",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "https://applinK.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL matches no config var",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "https://applink.example.tld/addons/orange",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL matches several config vars ignoring case and trailing slash",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "OTHER_API_URL": "HTTPS://APPLINK.EXAMPLE.TLD/ADDONS/PURPLE/",
+        "OTHER_TOKEN": "other-token"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL matches several config vars",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token",
+        "OTHER_API_URL": "https://applink.example.tld/addons/purple",
+        "OTHER_TOKEN": "other-token"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL matches config var without token",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL only matches config var without underscore before API_URL",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "PURPLEAPI_URL": "https://applink.example.tld/addons/purple",
+        "PURPLETOKEN": "purple-token"
+      },
+      "attachment": "https://applink.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL with other scheme matches no config var",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "HEROKU_APPLINK_PURPLE_API_URL": "https://applink.example.tld/addons/purple",
+        "HEROKU_APPLINK_PURPLE_TOKEN": "purple-token"
+      },
+      "attachment": "ftp://applink.example.tld/addons/purple",
+      "error": "configuration"
+    },
+    {
+      "name": "trailing slash is removed from API URL",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default/",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "expected": {
+        "apiUrl": "https://applink.example.tld/addons/default",
+        "token": "default-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "https scheme in upper case",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "HTTPS://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "expected": {
+        "apiUrl": "HTTPS://applink.example.tld/addons/default",
+        "token": "default-token",
+        "appId": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      }
+    },
+    {
+      "name": "http API URL",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "http://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "http API URL matched by URL",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "https://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60",
+        "PLAIN_API_URL": "http://applink.example.tld/addons/plain",
+        "PLAIN_TOKEN": "plain-token"
+      },
+      "attachment": "http://applink.example.tld/addons/plain",
+      "error": "configuration"
+    },
+    {
+      "name": "API URL without scheme",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    },
+    {
+      "name": "https scheme with a non-ASCII letter",
+      "env": {
+        "HEROKU_APPLINK_API_URL": "httpſ://applink.example.tld/addons/default",
+        "HEROKU_APPLINK_TOKEN": "default-token",
+        "HEROKU_APP_ID": "8d1f4e2a-6b3c-4d5e-9f0a-1b2c3d4e5f60"
+      },
+      "attachment": null,
+      "error": "configuration"
+    }
+  ]
+}

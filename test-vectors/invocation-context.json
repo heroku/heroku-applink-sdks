@@ -1,0 +1,741 @@
+{
+  "cases": [
+    {
+      "name": "all fields",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "without accessToken",
+      "header": "eyJhcGlWZXJzaW9uIjogIjYyLjAiLCAicmVxdWVzdElkIjogIjAwREpTMDAwMDAwMDEyM0FCQy00YjVmOGUyMS0yYzBhLTRiMGUtOWY0ZS02YTFkMmI3YzllM2YtMjAyNi0xMC0xM1QwOToxNTo0Mi4xMjM0NTZaIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": null
+      }
+    },
+    {
+      "name": "accessToken null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6IG51bGwsICJhcGlWZXJzaW9uIjogIjYyLjAiLCAicmVxdWVzdElkIjogIjAwREpTMDAwMDAwMDEyM0FCQy00YjVmOGUyMS0yYzBhLTRiMGUtOWY0ZS02YTFkMmI3YzllM2YtMjAyNi0xMC0xM1QwOToxNTo0Mi4xMjM0NTZaIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": null, \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": null
+      }
+    },
+    {
+      "name": "without namespace",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": null,
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "namespace empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": null,
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "namespace null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiBudWxsLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": null, \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": null,
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "unknown fields are ignored",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIiwgImZ1dHVyZUZpZWxkIjogdHJ1ZX0sICJ2ZXJzaW9uIjogIjEuMCIsICJmdXR1cmVGaWVsZCI6IHsibmVzdGVkIjogWzEsIDIsIDNdfSwgIm9yZ1R5cGUiOiA0Mn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\", \"futureField\": true}, \"version\": \"1.0\", \"futureField\": {\"nested\": [1, 2, 3]}, \"orgType\": 42}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "non-ASCII characters",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJqw7xyZ2VuLm3DvGxsZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"jürgen.müller@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "jürgen.müller@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "standard alphabet with + and /",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJmaWxsZXIiOiAifj9+P34/In0=",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      }
+    },
+    {
+      "name": "header missing",
+      "header": null,
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "header empty",
+      "header": "",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "not base64",
+      "header": "%%%not-base64%%%",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 with line breaks",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAx\nMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 with spaces",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAx MjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 with trailing newline",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9\n",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 without padding",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJwYWRkaW5nIjogIngifQ",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\", \"padding\": \"x\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 with misplaced padding",
+      "header": "=eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJwYWRkaW5nIjogIngifQ",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\", \"padding\": \"x\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64 with non-zero trailing bits",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJwYWRkaW5nIjogIngifR==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\", \"padding\": \"x\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "base64url alphabet",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJmaWxsZXIiOiAifj9-P34_In0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\", \"filler\": \"~?~?~?\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "invalid UTF-8 in unknown field",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJmdXR1cmVGaWVsZCI6ICL//iJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "lone surrogate in unknown field",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJmdXR1cmVGaWVsZCI6ICJcdWQ4MDAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "duplicate unknown field",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCIsICJmdXR1cmVGaWVsZCI6IDEsICJmdXR1cmVGaWVsZCI6IDJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "UTF-8 byte order mark",
+      "header": "77u/eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "not JSON",
+      "header": "bm90IGpzb24=",
+      "decoded": "not json",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "trailing data after JSON",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9IHg=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "expected": {
+        "requestId": "00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z",
+        "namespace": "example",
+        "org": {
+          "id": "00DJS0000000123ABC",
+          "domainUrl": "https://example.my.salesforce.com",
+          "apiVersion": "62.0",
+          "type": null
+        },
+        "user": {
+          "id": "005JS000000H123",
+          "username": "user@example.tld"
+        },
+        "credentials": {
+          "accessToken": "00DJS0000000123!AQ0AQ.token",
+          "expiration": null
+        }
+      },
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "JSON array",
+      "header": "W3siYWNjZXNzVG9rZW4iOiAiMDBESlMwMDAwMDAwMTIzIUFRMEFRLnRva2VuIiwgImFwaVZlcnNpb24iOiAiNjIuMCIsICJyZXF1ZXN0SWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDLTRiNWY4ZTIxLTJjMGEtNGIwZS05ZjRlLTZhMWQyYjdjOWUzZi0yMDI2LTEwLTEzVDA5OjE1OjQyLjEyMzQ1NloiLCAib3JnSWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDIiwgIm9yZ0RvbWFpblVybCI6ICJodHRwczovL2V4YW1wbGUubXkuc2FsZXNmb3JjZS5jb20iLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifV0=",
+      "decoded": "[{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}]",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "JSON string",
+      "header": "IjEuMCI=",
+      "decoded": "\"1.0\"",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "JSON null",
+      "header": "bnVsbA==",
+      "decoded": "null",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "version missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn19",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "version null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogbnVsbH0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": null}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "version 2.0",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjIuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"2.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "version 1",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "version as number",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogMS4wfQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": 1.0}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "apiVersion missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAicmVxdWVzdElkIjogIjAwREpTMDAwMDAwMDEyM0FCQy00YjVmOGUyMS0yYzBhLTRiMGUtOWY0ZS02YTFkMmI3YzllM2YtMjAyNi0xMC0xM1QwOToxNTo0Mi4xMjM0NTZaIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "apiVersion null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6IG51bGwsICJyZXF1ZXN0SWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDLTRiNWY4ZTIxLTJjMGEtNGIwZS05ZjRlLTZhMWQyYjdjOWUzZi0yMDI2LTEwLTEzVDA5OjE1OjQyLjEyMzQ1NloiLCAib3JnSWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDIiwgIm9yZ0RvbWFpblVybCI6ICJodHRwczovL2V4YW1wbGUubXkuc2FsZXNmb3JjZS5jb20iLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": null, \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "apiVersion empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICIiLCAicmVxdWVzdElkIjogIjAwREpTMDAwMDAwMDEyM0FCQy00YjVmOGUyMS0yYzBhLTRiMGUtOWY0ZS02YTFkMmI3YzllM2YtMjAyNi0xMC0xM1QwOToxNTo0Mi4xMjM0NTZaIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "apiVersion not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6IDYyLCAicmVxdWVzdElkIjogIjAwREpTMDAwMDAwMDEyM0FCQy00YjVmOGUyMS0yYzBhLTRiMGUtOWY0ZS02YTFkMmI3YzllM2YtMjAyNi0xMC0xM1QwOToxNTo0Mi4xMjM0NTZaIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": 62, \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "requestId missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgIm9yZ0lkIjogIjAwREpTMDAwMDAwMDEyM0FCQyIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "requestId null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6IG51bGwsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": null, \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "requestId empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIiLCAib3JnSWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDIiwgIm9yZ0RvbWFpblVybCI6ICJodHRwczovL2V4YW1wbGUubXkuc2FsZXNmb3JjZS5jb20iLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "requestId not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6IDYyLCAib3JnSWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDIiwgIm9yZ0RvbWFpblVybCI6ICJodHRwczovL2V4YW1wbGUubXkuc2FsZXNmb3JjZS5jb20iLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": 62, \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgId missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgId null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6IG51bGwsICJvcmdEb21haW5VcmwiOiAiaHR0cHM6Ly9leGFtcGxlLm15LnNhbGVzZm9yY2UuY29tIiwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": null, \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgId empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgId not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6IDYyLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": 62, \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgDomainUrl missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgDomainUrl null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogbnVsbCwgIm5hbWVzcGFjZSI6ICJleGFtcGxlIiwgInVzZXJDb250ZXh0IjogeyJ1c2VySWQiOiAiMDA1SlMwMDAwMDBIMTIzIiwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": null, \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgDomainUrl empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogIiIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "orgDomainUrl not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogNjIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": 62, \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IG51bGwsICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": null, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.userId missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.userId null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogbnVsbCwgInVzZXJuYW1lIjogInVzZXJAZXhhbXBsZS50bGQifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": null, \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.userId empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIiIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.userId not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogNjIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": 62, \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.username missing",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.username null",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6IG51bGx9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": null}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.username empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICIifSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext.username not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6IDYyfSwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": 62}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "userContext not an object",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6ICJ1c2VyIiwgInZlcnNpb24iOiAiMS4wIn0=",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": \"user\", \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "accessToken empty",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIiLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAiZXhhbXBsZSIsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "accessToken not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6IDEyMywgImFwaVZlcnNpb24iOiAiNjIuMCIsICJyZXF1ZXN0SWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDLTRiNWY4ZTIxLTJjMGEtNGIwZS05ZjRlLTZhMWQyYjdjOWUzZi0yMDI2LTEwLTEzVDA5OjE1OjQyLjEyMzQ1NloiLCAib3JnSWQiOiAiMDBESlMwMDAwMDAwMTIzQUJDIiwgIm9yZ0RvbWFpblVybCI6ICJodHRwczovL2V4YW1wbGUubXkuc2FsZXNmb3JjZS5jb20iLCAibmFtZXNwYWNlIjogImV4YW1wbGUiLCAidXNlckNvbnRleHQiOiB7InVzZXJJZCI6ICIwMDVKUzAwMDAwMEgxMjMiLCAidXNlcm5hbWUiOiAidXNlckBleGFtcGxlLnRsZCJ9LCAidmVyc2lvbiI6ICIxLjAifQ==",
+      "decoded": "{\"accessToken\": 123, \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": \"example\", \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    },
+    {
+      "name": "namespace not a string",
+      "header": "eyJhY2Nlc3NUb2tlbiI6ICIwMERKUzAwMDAwMDAxMjMhQVEwQVEudG9rZW4iLCAiYXBpVmVyc2lvbiI6ICI2Mi4wIiwgInJlcXVlc3RJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMtNGI1ZjhlMjEtMmMwYS00YjBlLTlmNGUtNmExZDJiN2M5ZTNmLTIwMjYtMTAtMTNUMDk6MTU6NDIuMTIzNDU2WiIsICJvcmdJZCI6ICIwMERKUzAwMDAwMDAxMjNBQkMiLCAib3JnRG9tYWluVXJsIjogImh0dHBzOi8vZXhhbXBsZS5teS5zYWxlc2ZvcmNlLmNvbSIsICJuYW1lc3BhY2UiOiAxMjMsICJ1c2VyQ29udGV4dCI6IHsidXNlcklkIjogIjAwNUpTMDAwMDAwSDEyMyIsICJ1c2VybmFtZSI6ICJ1c2VyQGV4YW1wbGUudGxkIn0sICJ2ZXJzaW9uIjogIjEuMCJ9",
+      "decoded": "{\"accessToken\": \"00DJS0000000123!AQ0AQ.token\", \"apiVersion\": \"62.0\", \"requestId\": \"00DJS0000000123ABC-4b5f8e21-2c0a-4b0e-9f4e-6a1d2b7c9e3f-2026-10-13T09:15:42.123456Z\", \"orgId\": \"00DJS0000000123ABC\", \"orgDomainUrl\": \"https://example.my.salesforce.com\", \"namespace\": 123, \"userContext\": {\"userId\": \"005JS000000H123\", \"username\": \"user@example.tld\"}, \"version\": \"1.0\"}",
+      "error": "invalid_inbound_data"
+    }
+  ]
+}
