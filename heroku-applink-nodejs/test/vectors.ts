@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
-const VECTORS_DIR = join(import.meta.dirname, "..", "..", "test-vectors");
+const VECTORS_DIR = join(import.meta.dirname, "..", "..");
 
 export function loadVectors<T>(name: string): T[] {
   return (

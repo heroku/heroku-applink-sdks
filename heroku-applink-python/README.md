@@ -105,4 +105,4 @@ uv run ruff format
 uv run mypy src tests
 ```
 
-The tests read the shared test vectors in [`../test-vectors`](../test-vectors).
+The tests read the shared test vectors in the [repository root](..).

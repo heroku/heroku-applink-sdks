@@ -104,4 +104,4 @@ npm run lint
 npm run format
 ```
 
-The tests read the shared test vectors in [`../test-vectors`](../test-vectors).
+The tests read the shared test vectors in the [repository root](..).

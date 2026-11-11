@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-VECTORS_DIR = Path(__file__).parent.parent.parent / "test-vectors"
+VECTORS_DIR = Path(__file__).parent.parent.parent
 
 
 def load_vectors(name: str) -> list[dict[str, Any]]:

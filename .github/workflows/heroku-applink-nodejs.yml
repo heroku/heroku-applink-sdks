@@ -5,12 +5,12 @@ on:
     branches: [main]
     paths:
       - "heroku-applink-nodejs/**"
-      - "test-vectors/**"
+      - "*.json"
       - ".github/workflows/heroku-applink-nodejs.yml"
   pull_request:
     paths:
       - "heroku-applink-nodejs/**"
-      - "test-vectors/**"
+      - "*.json"
       - ".github/workflows/heroku-applink-nodejs.yml"
 
 permissions:

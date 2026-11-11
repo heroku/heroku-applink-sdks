@@ -1,8 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/Heroku.AppLink/Heroku.AppLink.csproj" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/Heroku.AppLink.Tests/Heroku.AppLink.Tests.csproj" />
-  </Folder>
-</Solution>
